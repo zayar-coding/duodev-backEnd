@@ -1,8 +1,6 @@
 package com.dev.duodev.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,10 @@ import lombok.NoArgsConstructor;
 public class PostTags {
     @Id
     private Integer id;
-    private Integer postId;
-    private Integer tagId;
+    @ManyToOne
+    @JoinColumn(name = "postId", referencedColumnName = "id")
+    private Post post;  // Create a Post object to represent the foreign key relationship
+    @ManyToOne
+    @JoinColumn(name = "tagId", referencedColumnName = "id")
+    private Tag tag;
 }

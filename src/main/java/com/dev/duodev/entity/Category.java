@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -17,6 +19,8 @@ public class Category {
     private Integer id;
     private String name;
     private String description;
+    @OneToMany(mappedBy = "category")
+    private List<PostCategory> postCategories;
 
 
 

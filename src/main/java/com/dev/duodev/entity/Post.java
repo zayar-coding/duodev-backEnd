@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.util.Date;
+import java.util.List;
+
 
 @Entity
 @Data
@@ -25,6 +28,10 @@ public class Post {
     @Column(name = "lastModifiedDate", columnDefinition = "DATE DEFAULT CURRENT_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
+    @OneToMany(mappedBy = "post")
+    private List<PostTags> postTags;
+    @OneToMany(mappedBy = "category")
+    private List<PostCategory> postCategories;
 
 
 }

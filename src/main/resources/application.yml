@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.NonRegisteringDriver
     url: jdbc:mysql://localhost:3306/duodev
     username: root
-    password: root
+    password: Zayar@1832003
     jpa:
       hibernate:
         ddl-auto: create

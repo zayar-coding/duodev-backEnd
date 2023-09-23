@@ -14,7 +14,11 @@ public class PostCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Integer postId;
-    private Integer categoryId;
+    @ManyToOne
+    @JoinColumn(name = "postId", referencedColumnName = "id")
+    private Post post;
+    @ManyToOne
+    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    private Category category;
 
 }
