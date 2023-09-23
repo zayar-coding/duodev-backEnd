@@ -18,7 +18,6 @@ public class Tag {
     private Integer id;
     private String name;
     private String description;
-
-    @OneToMany(mappedBy = "tag")
-    private List<PostTags> postTags;
+    @ManyToOne
+    private Post post;
 }

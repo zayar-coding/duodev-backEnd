@@ -1,13 +1,16 @@
 package com.dev.duodev.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -38,13 +41,15 @@ public class User {
     @Column(name = "role", nullable = false)
     private UserRole role;
 
-    @Column(name = "registrationDate", nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date registrationDate;
+    @Column(name = "registrationDate", nullable = false, updatable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime registrationDate;
 
-    @Column(name = "lastLoginDate")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastLoginDate;
+    @Column(name = "lastLoginDate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime lastLoginDate;
 
     private Boolean status;
 

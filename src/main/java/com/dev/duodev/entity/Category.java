@@ -19,8 +19,9 @@ public class Category {
     private Integer id;
     private String name;
     private String description;
-    @OneToMany(mappedBy = "category")
-    private List<PostCategory> postCategories;
+    @OneToOne
+    private Post post;
+    
 
 
 
